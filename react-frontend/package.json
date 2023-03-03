@@ -55,6 +55,5 @@
 	"devDependencies": {
 		"@testing-library/react": "^12.1.5",
 		"@testing-library/user-event": "^12.8.3"
-	},
-	"proxy": "http://18.212.94.168:80"
+	}
 }
