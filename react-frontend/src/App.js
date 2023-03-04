@@ -15,7 +15,7 @@ const App = () => {
       </Helmet>
 
       <Route component={PostListPage} path={['/@:username', '/']} exact />
-      <Route component={LoginPage} path="/login" />
+      <Route component={LoginPage} path="/" />
       <Route component={RegisterPage} path="/register" />
       <Route component={WritePage} path="/write" />
       <Route component={PostPage} path="/@:username/:postId" />
