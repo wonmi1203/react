@@ -13,7 +13,7 @@ const App = () => {
       <Helmet>
         <title>DELETE REACT</title>
       </Helmet>
-	<PrivateRoute exact path="/" component={LoginPage}  getRoomList={['/@:username', 'PostListPage']}  />
+		<Route exact path="/" component={LoginPage}  getRoomList={['/@:username', 'PostListPage']}  />
       <Route component={PostListPage} path="/PostListPage" />
       <Route component={LoginPage} path="/login" />
       <Route component={RegisterPage} path="/register" />
