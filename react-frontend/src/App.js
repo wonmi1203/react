@@ -13,9 +13,8 @@ const App = () => {
       <Helmet>
         <title>DELETE REACT</title>
       </Helmet>
-
-      <Route component={PostListPage} path={['/@:username', 'PostListPage']} exact />
       <Route component={LoginPage} path="/" />
+      <Route component={PostListPage} path={['/@:username', 'PostListPage']}  />
       <Route component={RegisterPage} path="/register" />
       <Route component={WritePage} path="/write" />
       <Route component={PostPage} path="/@:username/:postId" />

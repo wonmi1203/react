@@ -53,7 +53,7 @@ const LoginForm = ({ history }) => {
 
   useEffect(() => {
     if (user) {
-      history.push('PostListPage');
+      history.push('/');
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
