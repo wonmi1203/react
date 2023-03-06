@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
+import palette from '../../lib/styles/palette';
 
 const HeaderBlock = styled.div`
   position: fixed;
@@ -28,6 +29,15 @@ const Wrapper = styled(Responsive)`
     display: flex;
     align-items: center;
   }
+  .menu {
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: ${palette.violet[8]};
+    &:hover {
+      color: ${palette.violet[5]};
+    }
+  }
 `;
 
 /**
@@ -50,6 +60,9 @@ const Header = ({ user, onLogout }) => {
           <Link to="/" className="logo">
             REACT
           </Link>
+          <Link to="/" className="menu">개요</Link>
+          <Link to="postlistpage" className="menu">방명록</Link>
+
           {user ? (
             <div className="right">
               <UserInfo>{user.username}</UserInfo>
