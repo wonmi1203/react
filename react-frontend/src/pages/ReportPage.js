@@ -6,6 +6,8 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
 text-align-last : center;
+font-family:monospace;
+font-size: x-large;
 `;
 
 
