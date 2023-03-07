@@ -38,8 +38,10 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
   if (loading || !post) {
     return null;
   }
+  const UserI = localStorage.getItem('user');
 
   const { title, body, user, publishedDate, tags } = post;
+
   return (
     <PostViewerBlock>
       <Helmet>
@@ -55,7 +57,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
         />
         <Tags tags={tags} />
       </PostHead>
-      {actionButtons}
+      {UserI === user.username && actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
     </PostViewerBlock>
   );

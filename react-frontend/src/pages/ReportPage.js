@@ -22,6 +22,7 @@ const Wrapper = styled.div`
 		}
 	}
 `;
+const url = "https://github.com/wonmi1203/react.git"
 
 const ReportPage = () => {
 	return (
@@ -39,7 +40,7 @@ const ReportPage = () => {
 
 					<li>
 						<h1 id="-프로젝트-깃허브-주소">GitHub URL</h1>
-						<p><Link to="https://github.com/wonmi1203/react.git">https://github.com/wonmi1203/react.git</Link></p>
+						<p><a href="#" onClick={() => { window.open(url) }}>https://github.com/wonmi1203/react.git</a></p>
 					</li>
 
 					<li>
