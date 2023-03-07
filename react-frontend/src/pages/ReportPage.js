@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-	padding: 100px 0;
+	padding: 70px 0;
 	text-align-last : center;
 
 	li {
@@ -13,15 +13,16 @@ const Wrapper = styled.div`
 
 		h1 {
 			font-family: lobster;
-			font-size: 30px;
+			font-size: 25px;
 			color: #9775fa;
 		}
 
 		p {
-			font-size: 18px;
+			font-size: 16px;
 		}
 	}
 `;
+
 const url = "https://github.com/wonmi1203/react.git"
 
 const ReportPage = () => {
@@ -48,16 +49,12 @@ const ReportPage = () => {
 						<p>인프라 ▶ AWS
 							<br />DB ▶ MONGODB
 							<br />그 외 ▼ ▼ ▼<br />
-							Node.js<br />
-							React<br />
-							EXPRESS<br />
-							sass<br />
-							+ @
+							Node.js / React / EXPRESS / sass / + @
 						</p>
 					</li>
 
 					<li>
-						<h1>Memo..</h1>
+						<h1>And..</h1>
 						<p><strong>너무 힘들다...🏃🏃🏃🏃</strong></p>
 					</li>
 				</ul>

@@ -23,14 +23,19 @@ const Wrapper = styled(Responsive)`
 	justify-content: space-between;
 
 	.logo {
-		font-size: 1.125rem;
+		font-family: lobster;
 		font-weight: 800;
+		font-size: 1.2rem;
 		letter-spacing: 2px;
 	}
 
 	.right {
 		display: flex;
 		align-items: center;
+
+		a {
+			font-weight: 400;
+		}
 	}
 
 	.menu {
@@ -74,7 +79,7 @@ const Header = ({ user, onLogout }) => {
 						</div>
 					) : (
 						<div className="right">
-							<Button to="/login">로그인</Button>
+							<Button to="/login">Login</Button>
 						</div>
 					)}
 				</Wrapper>

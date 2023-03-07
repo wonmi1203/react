@@ -29,6 +29,12 @@ const WhiteBox = styled.div`
 		text-align: center;
 		font-weight: bold;
 		letter-spacing: 2px;
+
+		a {
+			font-family: lobster;
+			font-size: 23px;
+			color: #845ef7;
+		}
 	}
 
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -43,7 +49,7 @@ return (
 	<AuthTemplateBlock>
 	<WhiteBox>
 		<div className="logo-area">
-		<Link to="/">DELETE REACT</Link>
+		<Link to="/">REACT</Link>
 		</div>
 		{children}
 	</WhiteBox>
