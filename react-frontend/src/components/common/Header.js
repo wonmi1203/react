@@ -57,31 +57,31 @@ margin-right: 1rem;
 `;
 
 const Header = ({ user, onLogout }) => {
-return (
-	<>
-	<HeaderBlock>
-		<Wrapper>
-		<Link to="/" className="logo">
-			REACT
-		</Link>
-		<Link to="/" className="menu">개요</Link>
-		<Link to="postlistpage" className="menu">방명록</Link>
+	return (
+		<>
+			<HeaderBlock>
+				<Wrapper>
+					<Link to="/" className="logo">
+						REACT
+					</Link>
+					<Link to="/" className="menu">개요</Link>
+					<Link to="/postlistpage" className="menu">방명록</Link>
 
-		{user ? (
-			<div className="right">
-			<UserInfo>{user.username}</UserInfo>
-			<Button onClick={onLogout}>로그아웃</Button>
-			</div>
-		) : (
-			<div className="right">
-			<Button to="/login">로그인</Button>
-			</div>
-		)}
-		</Wrapper>
-	</HeaderBlock>
-	<Spacer />
-	</>
-);
+					{user ? (
+						<div className="right">
+							<UserInfo>{user.username}</UserInfo>
+							<Button onClick={onLogout}>로그아웃</Button>
+						</div>
+					) : (
+						<div className="right">
+							<Button to="/login">로그인</Button>
+						</div>
+					)}
+				</Wrapper>
+			</HeaderBlock>
+			<Spacer />
+		</>
+	);
 };
 
 export default Header;
