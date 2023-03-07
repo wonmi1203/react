@@ -1,0 +1,8 @@
+@font-face {
+	font-family: noto;
+	src: url('./NotoSansKR-Bold.otf'),
+	url('./NotoSansKR-Light.otf'),
+	url('./NotoSansKR-Medium.otf'),
+	url('./NotoSansKR-Regular.otf'),
+	url('./NotoSansKR-Thin.otf');
+}
