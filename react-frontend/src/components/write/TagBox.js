@@ -3,60 +3,73 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 
 const TagBoxBlock = styled.div`
-  width: 100%;
-  border-top: 1px solid ${palette.gray[2]};
-  padding-top: 2rem;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	width: 100%;
+	border-top: 1px solid ${palette.gray[2]};
+	padding-top: 2rem;
 
-  h4 {
-    color: ${palette.gray[8]}
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
+	h4 {
+		font-family: lobster;
+		font-size: 1.5rem;
+		margin: 0;
+		margin-right: 1.5rem;
+		color: ${palette.gray[8]}
+	}
 `;
 
 const TagForm = styled.form`
-  border-radius: 4px;
-  overflow: hidden;
-  display: flex;
-  width: 256px;
-  border: 1px solid ${palette.gray[9]}; /* 스타일 초기화 */
-  input,
-  button {
-    outline: none;
-    border: none;
-    font-size: 1rem;
-  }
+	border-radius: 4px;
+	overflow: hidden;
+	display: flex;
+	width: 280px;
+	height: 40px;
+	border-bottom: 1px solid ${palette.gray[9]}; /* 스타일 초기화 */
+	border-radius: 0;
 
-  input {
-    padding: 0.5rem;
-    flex: 1;
-  }
-  button {
-    cursor: pointer;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    border: none;
-    background: ${palette.gray[8]};
-    color: white;
-    font-weight: bold;
-    &:hover {
-      background: ${palette.gray[6]};
-    }
-  }
+	input,
+	button {
+		outline: none;
+		border: none;
+		font-size: 1rem;
+	}
+
+	input {
+		padding: 0.5rem;
+		flex: 1;
+	}
+
+	button {
+		cursor: pointer;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		border: none;
+		border-radius: 10px 10px 0 0;
+		background: ${palette.gray[8]};
+		color: white;
+		font-weight: bold;
+		&:hover {
+		background: ${palette.gray[6]};
+		}
+	}
 `;
 
 const Tag = styled.div`
-  margin-right: 0.5rem;
-  color: ${palette.gray[6]};
-  cursor: pointer;
-  &:hover {
-    opacity: 0.5;
-  }
+	margin-right: 1rem;
+	color: ${palette.gray[6]};
+	cursor: pointer;
+
+	&:hover {
+		opacity: 0.5;
+	}
 `;
 
 const TagListBlock = styled.div`
-  display: flex;
-  margin-top: 0.5rem;
+	display: flex;
+	width: 100%;
+	font-size: 1rem;
+	margin-top: 1rem;
 `;
 
 // React.memo를 사용하여 tag 값이 바뀔 때만 리렌더링되도록 처리
@@ -117,7 +130,7 @@ const TagBox = ({ tags, onChangeTags }) => {
 
   return (
     <TagBoxBlock>
-      <h4>태그</h4>
+      <h4>Tag</h4>
       <TagForm onSubmit={onSubmit}>
         <input
           placeholder="태그를 입력하세요"

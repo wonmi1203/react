@@ -57,8 +57,8 @@ height: 4rem;
 `;
 
 const UserInfo = styled.div`
-font-weight: 800;
-margin-right: 1rem;
+	margin-right: 1rem;
+	font-size: 1rem;
 `;
 
 const Header = ({ user, onLogout }) => {
@@ -74,7 +74,7 @@ const Header = ({ user, onLogout }) => {
 
 					{user ? (
 						<div className="right">
-							<UserInfo>{user.username}</UserInfo>
+							<UserInfo>{user.username} 님</UserInfo>
 							<Button onClick={onLogout}>로그아웃</Button>
 						</div>
 					) : (

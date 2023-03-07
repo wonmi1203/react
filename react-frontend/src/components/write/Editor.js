@@ -6,30 +6,42 @@ import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 
 const EditorBlock = styled(Responsive)`
-  /* 페이지 위 아래 여백 지정 */
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-`;
+	padding-top: 5rem;
+	padding-bottom: 7rem;
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		margin-bottom: 2rem;
+
+		h4 {
+			font-family: lobster;
+			font-size: 1.5rem;
+		}
+	}
+
+	`;
+
 const TitleInput = styled.input`
-  font-size: 3rem;
-  outline: none;
-  padding-bottom: 0.5rem;
-  border: none;
-  border-bottom: 1px solid ${palette.gray[4]};
-  margin-bottom: 2rem;
-  width: 100%;
+	width: 92%;
+	font-size: 1.1rem;
+	outline: none;
+	padding: 0.8rem 1rem;
+	border: none;
+	border-bottom: 1px solid ${palette.gray[9]};
 `;
+
 const QuillWrapper = styled.div`
-  /* 최소 크기 지정 및 padding 제거 */
-  .ql-editor {
-    padding: 0;
-    min-height: 320px;
-    font-size: 1.125rem;
-    line-height: 1.5;
-  }
-  .ql-editor.ql-blank::before {
-    left: 0px;
-  }
+	.ql-editor {
+		min-height: 400px;
+		padding: 0;
+		font-size: 1rem;
+	}
+	.ql-editor.ql-blank::before {
+		left: 0px;
+	}
 `;
 
 const Editor = ({ title, body, onChangeField }) => {
@@ -74,17 +86,20 @@ const Editor = ({ title, body, onChangeField }) => {
   };
 
   return (
-    <EditorBlock>
-      <TitleInput
-        placeholder="제목을 입력하세요"
-        onChange={onChangeTitle}
-        value={title}
-      />
-      <QuillWrapper>
-        <div ref={quillElement} />
-      </QuillWrapper>
-    </EditorBlock>
-  );
+    	<EditorBlock>
+			<div className='title'>
+				<h4>Title</h4>
+				<TitleInput
+					placeholder="제목을 입력하세요"
+					onChange={onChangeTitle}
+					value={title}
+				/>
+			</div>
+		<QuillWrapper>
+			<div ref={quillElement} />
+		</QuillWrapper>
+		</EditorBlock>
+  	);
 };
 
 export default Editor;
