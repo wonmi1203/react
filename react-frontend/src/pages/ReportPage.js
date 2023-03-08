@@ -5,20 +5,17 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-	padding: 70px 0;
+	padding: 8rem 0;
 	text-align-last : center;
 
 	li {
 		margin-bottom: 70px;
 
 		h1 {
+			margin-bottom:0.5rem;
 			font-family: lobster;
-			font-size: 25px;
+			font-size: 1.8rem;
 			color: #9775fa;
-		}
-
-		p {
-			font-size: 16px;
 		}
 	}
 `;

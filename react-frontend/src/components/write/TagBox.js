@@ -23,7 +23,7 @@ const TagForm = styled.form`
 	border-radius: 4px;
 	overflow: hidden;
 	display: flex;
-	width: 280px;
+	width: 300px;
 	height: 40px;
 	border-bottom: 1px solid ${palette.gray[9]}; /* 스타일 초기화 */
 	border-radius: 0;
@@ -42,15 +42,15 @@ const TagForm = styled.form`
 
 	button {
 		cursor: pointer;
-		padding-right: 1rem;
-		padding-left: 1rem;
+		width: 4rem;
 		border: none;
 		border-radius: 10px 10px 0 0;
 		background: ${palette.gray[8]};
 		color: white;
-		font-weight: bold;
+		font-weight: 400;
+
 		&:hover {
-		background: ${palette.gray[6]};
+			background: ${palette.gray[6]};
 		}
 	}
 `;

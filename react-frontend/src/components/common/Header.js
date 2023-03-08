@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Responsive from './Responsive';
 import Button from './Button';
 import palette from '../../lib/styles/palette';
+import MenuImg from '../../assets/img/menu.png';
 
 const HeaderBlock = styled.div`
 	position: fixed;
@@ -27,22 +28,75 @@ const Wrapper = styled(Responsive)`
 		letter-spacing: 2px;
 	}
 
-	.right {
+	.gnb {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
+		width: 75%;
 
-		a {
-			font-weight: 400;
+		.right {
+			display: flex;
+			align-items: center;
+
+			a, button {
+				font-weight: 400;
+			}
+		}
+
+		.menu {
+			font-size: 1.125rem;
+			font-weight: 800;
+			letter-spacing: 2px;
+			color: ${palette.violet[8]};
+			&:hover {
+			color: ${palette.violet[5]};
+			}
 		}
 	}
 
-	.menu {
-		font-size: 1.125rem;
-		font-weight: 800;
-		letter-spacing: 2px;
-		color: ${palette.violet[8]};
-		&:hover {
-		color: ${palette.violet[5]};
+	.hamMenu {
+		display: none;
+	}
+
+
+	@media (max-width: 768px) {
+		.gnb {
+			opacity: 0;
+
+			&.active {
+				opacity: 1;
+				position: fixed;
+				top: 0;
+				left: 0;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				width: 100%;
+				height: 100%;
+				padding: 6rem 2rem;
+				background: #fff;
+				box-sizing: border-box;
+
+				a {
+					width: 100%;
+					margin-bottom: 1rem;
+					text-align: left;
+				}
+
+				.right {
+					a, button {
+						width: auto;
+						position: absolute;
+						right: 2rem;
+						bottom: 2rem;
+					}
+				}
+			}
+		}
+
+		.hamMenu {
+			z-index: 99;
+			display: block;
 		}
 	}
 `;
@@ -52,12 +106,28 @@ const Spacer = styled.div`
 	height: 4rem;
 `;
 
-const UserInfo = styled.div`
+const UserInfo = styled(Responsive)`
+	width: auto;
 	margin-right: 1rem;
-	font-size: 1rem;
+	font-size: 1.1rem;
+
+	@media (max-width: 768px) {
+		z-index: 99;
+		position: absolute;
+		top: 1.1rem;
+		right: 2rem;
+		text-align: right;
+	}
 `;
 
+
 const Header = ({ user, onLogout }) => {
+	const [state, setState] = useState("");
+
+	const toggleAccordion = () => {
+		setState(state === "" ? "active" : "");
+	}
+
 	return (
 		<>
 			<HeaderBlock>
@@ -65,19 +135,26 @@ const Header = ({ user, onLogout }) => {
 					<Link to="/" className="logo">
 						REACT
 					</Link>
-					<Link to="/" className="menu">개요</Link>
-					<Link to="/postlistpage" className="menu">방명록</Link>
 
-					{user ? (
-						<div className="right">
-							<UserInfo>{user.username} 님</UserInfo>
-							<Button onClick={onLogout}>로그아웃</Button>
-						</div>
-					) : (
-						<div className="right">
-							<Button to="/login">Login</Button>
-						</div>
-					)}
+					<div className={`gnb ${state}`}>
+						<Link to="/" className="menu">개요</Link>
+						<Link to="/postlistpage" className="menu">방명록</Link>
+
+						{user ? (
+							<div className="right">
+								<UserInfo>{user.username} 님</UserInfo>
+								<Button onClick={onLogout}>Log out</Button>
+							</div>
+						) : (
+							<div className="right">
+								<Button to="/login">Login</Button>
+							</div>
+						)}
+					</div>
+
+					<button onClick={toggleAccordion} className="hamMenu">
+						<img src={MenuImg} alt=""/>
+					</button>
 				</Wrapper>
 			</HeaderBlock>
 
