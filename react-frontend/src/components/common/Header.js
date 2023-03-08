@@ -5,6 +5,7 @@ import Responsive from './Responsive';
 import Button from './Button';
 import palette from '../../lib/styles/palette';
 import MenuImg from '../../assets/img/menu.png';
+import ReactBg from '../../assets/img/react.webp';
 
 const HeaderBlock = styled.div`
 	position: fixed;
@@ -74,7 +75,8 @@ const Wrapper = styled(Responsive)`
 				width: 100%;
 				height: 100%;
 				padding: 6rem 2rem;
-				background: #fff;
+				background: #fff url(${ReactBg}) no-repeat;
+				background-position: center;
 				box-sizing: border-box;
 
 				a {
