@@ -48,7 +48,7 @@ const ReportPage = () => {
 
 					<li>
 						<h1>Technology</h1>
-						<p>인프라 ▶ AWS
+						<p>인프라 ▶ AWS ( EC2 )
 							<br />DB ▶ MONGODB
 							<br />그 외 ▼ ▼ ▼<br />
 							Node.js / React / EXPRESS / sass / + @
