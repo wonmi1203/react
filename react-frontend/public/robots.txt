@@ -1,3 +1,6 @@
+// 웹사이트에 웹 크롤러 같은 로봇들의 접근을 제어하기 위한 규약
 # https://www.robotstxt.org/robotstxt.html
+
+// 모든 무선에 대한 접근 차단
 User-agent: *
 Disallow:

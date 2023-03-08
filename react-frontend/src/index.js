@@ -38,9 +38,9 @@ loadUser();
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
-		<HelmetProvider>
-			<App />
-		</HelmetProvider>
+			<HelmetProvider> {/* Helmet을 사용하려면 HelmetProvider로 감싸줘야한다. App component안에 Helmet 사용중 */}
+				<App />
+			</HelmetProvider>
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById('root'),
