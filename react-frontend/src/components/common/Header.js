@@ -53,7 +53,7 @@ const Wrapper = styled(Responsive)`
  * 헤더가 fixed로 되어 있기 때문에 페이지의 컨텐츠가 4rem 아래 나타나도록 해주는 컴포넌트
  */
 const Spacer = styled.div`
-height: 4rem;
+	height: 4rem;
 `;
 
 const UserInfo = styled.div`

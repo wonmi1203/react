@@ -9,20 +9,20 @@ import ReportPage from './pages/ReportPage';
 import { Helmet } from 'react-helmet-async';
 
 const App = () => {
-  return (
-    <>
-      <Helmet>
-        <title>DELETE REACT</title>
-      </Helmet>
+	return (
+		<>
+		<Helmet>
+			<title>DELETE REACT</title>
+		</Helmet>
 
-      <Route component={PostListPage} path="/postlistpage" />
-      <Route component={LoginPage} path="/login" />
-      <Route component={RegisterPage} path="/register" />
-      <Route component={WritePage} path="/write" />
-      <Route component={PostPage} path="/@:username/:postId" />
-      <Route component={ReportPage} path={['/@:username', '/']} exact />
+		<Route component={PostListPage} path="/postlistpage" />
+		<Route component={LoginPage} path="/login" />
+		<Route component={RegisterPage} path="/register" />
+		<Route component={WritePage} path="/write" />
+		<Route component={PostPage} path="/@:username/:postId" />
+		<Route component={ReportPage} path={['/@:username', '/']} exact />
 
-    </>
-  );
+		</>
+	);
 };
 export default App;

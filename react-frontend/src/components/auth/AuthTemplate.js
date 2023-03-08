@@ -45,16 +45,16 @@ const WhiteBox = styled.div`
 `;
 
 const AuthTemplate = ({ children }) => {
-return (
-	<AuthTemplateBlock>
-	<WhiteBox>
-		<div className="logo-area">
-		<Link to="/">REACT</Link>
-		</div>
-		{children}
-	</WhiteBox>
-	</AuthTemplateBlock>
-);
+	return (
+		<AuthTemplateBlock>
+			<WhiteBox>
+				<div className="logo-area">
+					<Link to="/">REACT</Link>
+				</div>
+				{children}
+			</WhiteBox>
+		</AuthTemplateBlock>
+	);
 };
 
 export default AuthTemplate;

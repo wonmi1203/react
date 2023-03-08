@@ -7,7 +7,7 @@ const SubInfoBlock = styled.div`
 	${props =>
 		props.hasMarginTop &&
 		css`
-		margin-top: 1rem;
+			margin-top: 1rem;
 	`}
 
 	text-align: right;
@@ -25,12 +25,12 @@ const SubInfoBlock = styled.div`
 const SubInfo = ({ username, publishedDate, hasMarginTop }) => {
 	return (
 		<SubInfoBlock hasMarginTop={hasMarginTop}>
-		<span>
-			<b>
-			<Link to={`/@${username}`}>{username} 님</Link>
-			</b>
-		</span>
-		<span>{new Date(publishedDate).toLocaleDateString()}</span>
+			<span>
+				<b>
+				<Link to={`/@${username}`}>{username} 님</Link>
+				</b>
+			</span>
+			<span>{new Date(publishedDate).toLocaleDateString()}</span>
 		</SubInfoBlock>
 	);
 };

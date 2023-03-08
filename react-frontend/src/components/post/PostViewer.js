@@ -7,7 +7,7 @@ import Tags from '../common/Tags';
 import { Helmet } from 'react-helmet-async';
 
 const PostViewerBlock = styled(Responsive)`
-	  margin-top: 4rem;
+	margin-top: 4rem;
 `;
 
 const PostHead = styled.div`
@@ -45,21 +45,22 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 	const { title, body, user, publishedDate, tags } = post;
 	return (
 		<PostViewerBlock>
-		<Helmet>
-			<title>{title} - REACT</title>
-		</Helmet>
+			<Helmet>
+				<title>{title} - REACT</title>
+			</Helmet>
 
-		<PostHead>
-			<h1>{title}</h1>
-			<SubInfo
-			username={user.username}
-			publishedDate={publishedDate}
-			hasMarginTop
-			/>
-			<Tags tags={tags} />
-		</PostHead>
-		{UserI.username === user.username && actionButtons}
-		<PostContent dangerouslySetInnerHTML={{ __html: body }} />
+			<PostHead>
+				<h1>{title}</h1>
+				<SubInfo
+				username={user.username}
+				publishedDate={publishedDate}
+				hasMarginTop
+				/>
+				<Tags tags={tags} />
+			</PostHead>
+
+			{UserI.username === user.username && actionButtons}
+			<PostContent dangerouslySetInnerHTML={{ __html: body }} />
 		</PostViewerBlock>
 	);
 };

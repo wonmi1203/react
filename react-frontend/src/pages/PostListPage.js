@@ -4,13 +4,13 @@ import PostListContainer from '../containers/posts/PostListContainer';
 import PaginationContainer from '../containers/posts/PaginationContainer';
 
 const PostListPage = () => {
-  return (
-    <>
-      <HeaderContainer />
-      <PostListContainer />
-      <PaginationContainer />
-    </>
-  );
+	return (
+		<>
+		<HeaderContainer />
+		<PostListContainer />
+		<PaginationContainer />
+		</>
+	);
 };
 
 export default PostListPage;
