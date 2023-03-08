@@ -21,15 +21,18 @@ const AskModalBlock = styled.div`
 	padding: 2rem;
 	border-radius: 4px;
 	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.125);
+
 	h2 {
 		margin-top: 0;
 		margin-bottom: 1rem;
 		font-size: 1.5rem;
 	}
+
 	p {
 		margin-bottom: 3rem;
 		font-size: 1rem;
 	}
+
 	.buttons {
 		display: flex;
 		justify-content: center;
@@ -38,6 +41,7 @@ const AskModalBlock = styled.div`
 
 const StyledButton = styled(Button)`
 	height: 2rem;
+
 	& + & {
 		margin-left: 0.75rem;
 	}
@@ -53,6 +57,7 @@ const AskModal = ({
 	onCancel,
 }) => {
 	if (!visible) return null;
+
 	return (
 		<Fullscreen>
 			<AskModalBlock>

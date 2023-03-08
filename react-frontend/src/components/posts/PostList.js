@@ -74,21 +74,22 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
 	return (
 		<PostListBlock>
-		<WritePostButtonWrapper>
-			{showWriteButton && (
-			<Button cyan to="/write">
-				작성하기
-			</Button>
+			<WritePostButtonWrapper>
+				{showWriteButton && (
+				<Button cyan to="/write">
+					작성하기
+				</Button>
+				)}
+			</WritePostButtonWrapper>
+
+			{/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
+			{!loading && posts && (
+				<div>
+				{posts.map(post => (
+					<PostItem post={post} key={post._id} />
+				))}
+				</div>
 			)}
-		</WritePostButtonWrapper>
-		{/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
-		{!loading && posts && (
-			<div>
-			{posts.map(post => (
-				<PostItem post={post} key={post._id} />
-			))}
-			</div>
-		)}
 		</PostListBlock>
 	);
 };

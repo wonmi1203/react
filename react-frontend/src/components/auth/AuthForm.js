@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 import palette from '../../lib/styles/palette';
 import Button from '../common/Button';
 
-/**
- * 회원가입 또는 로그인 폼을 보여줍니다.
- */
-
+// 회원가입 또는 로그인 폼을 보여줍니다.
 const AuthFormBlock = styled.div`
-  h3 {
+	h3 {
 		margin: 0;
 		margin-bottom: 2rem;
 		font-size: 15px;
@@ -17,9 +14,7 @@ const AuthFormBlock = styled.div`
 	}
 `;
 
-/**
- * 스타일링된 input
- */
+// 스타일링된 input
 const StyledInput = styled.input`
 	font-size: 1rem;
 	border: none;
@@ -36,9 +31,7 @@ const StyledInput = styled.input`
 	}
 `;
 
-/**
- * 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
- */
+// 폼 하단에 로그인 혹은 회원가입 링크를 보여줌
 const Footer = styled.div`
 	margin-top: 2rem;
 	text-align: right;
@@ -62,9 +55,7 @@ const textMap = {
 	register: '회원가입'
 };
 
-/**
- * 에러를 보여줍니다
- */
+// 에러를 보여줍니다
 const ErrorMessage = styled.div`
 	color: red;
 	text-align: center;
@@ -86,6 +77,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
 					onChange={onChange}
 					value={form.username}
 				/>
+
 				<StyledInput
 					autoComplete="new-password"
 					name="password"
@@ -94,6 +86,7 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
 					onChange={onChange}
 					value={form.password}
 				/>
+
 				{type === 'register' && (
 					<StyledInput
 						autoComplete="new-password"
@@ -104,9 +97,11 @@ const AuthForm = ({ type, form, onChange, onSubmit, error }) => {
 						value={form.passwordConfirm}
 					/>
 				)}
+
 				{error && <ErrorMessage>{error}</ErrorMessage>}
+
 				<ButtonWithMarginTop cyan fullWidth style={{ marginTop: '1rem' }}>
-				{text}
+					{text}
 				</ButtonWithMarginTop>
 			</form>
 

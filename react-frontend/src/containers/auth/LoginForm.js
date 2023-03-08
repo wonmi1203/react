@@ -14,15 +14,16 @@ const LoginForm = ({ history }) => {
 		authError: auth.authError,
 		user: user.user,
 	}));
+
 	// 인풋 변경 이벤트 핸들러
 	const onChange = e => {
 		const { value, name } = e.target;
 		dispatch(
-		changeField({
-			form: 'login',
-			key: name,
-			value,
-		}),
+			changeField({
+				form: 'login',
+				key: name,
+				value,
+			}),
 		);
 	};
 
@@ -64,11 +65,11 @@ const LoginForm = ({ history }) => {
 
 	return (
 		<AuthForm
-		type="login"
-		form={form}
-		onChange={onChange}
-		onSubmit={onSubmit}
-		error={error}
+			type="login"
+			form={form}
+			onChange={onChange}
+			onSubmit={onSubmit}
+			error={error}
 		/>
 	);
 };

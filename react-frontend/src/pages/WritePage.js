@@ -8,13 +8,12 @@ import { Helmet } from 'react-helmet-async';
 const WritePage = () => {
 	return (
 		<Responsive>
-		<Helmet>
-			<title>글 작성하기 - REACT</title>
-		</Helmet>
-
-		<EditorContainer />
-		<TagBoxContainer />
-		<WriteActionButtonsContainer />
+			<Helmet>
+				<title>글 작성하기 - REACT</title>
+			</Helmet>
+			<EditorContainer />
+			<TagBoxContainer />
+			<WriteActionButtonsContainer />
 		</Responsive>
 	);
 };

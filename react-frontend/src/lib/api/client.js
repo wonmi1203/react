@@ -14,12 +14,12 @@ const client = axios.create();
 	// 인터셉터 설정
 	axios.intercepter.response.use(\
 		response => {
-		// 요청 성공 시 특정 작업 수행
-		return response;
+			// 요청 성공 시 특정 작업 수행
+			return response;
 		},
 		error => {
-		// 요청 실패 시 특정 작업 수행
-		return Promise.reject(error);
+			// 요청 실패 시 특정 작업 수행
+			return Promise.reject(error);
 		}
 	})
 */

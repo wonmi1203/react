@@ -21,8 +21,7 @@ const EditorBlock = styled(Responsive)`
 			font-size: 1.5rem;
 		}
 	}
-
-	`;
+`;
 
 const TitleInput = styled.input`
 	width: 92%;
@@ -39,6 +38,7 @@ const QuillWrapper = styled.div`
 		padding: 0;
 		font-size: 1rem;
 	}
+
 	.ql-editor.ql-blank::before {
 		left: 0px;
 	}
@@ -95,9 +95,10 @@ const Editor = ({ title, body, onChangeField }) => {
 					value={title}
 				/>
 			</div>
-		<QuillWrapper>
-			<div ref={quillElement} />
-		</QuillWrapper>
+
+			<QuillWrapper>
+				<div ref={quillElement} />
+			</QuillWrapper>
 		</EditorBlock>
 	);
 };
