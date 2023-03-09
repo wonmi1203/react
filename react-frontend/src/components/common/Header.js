@@ -5,6 +5,7 @@ import Responsive from './Responsive';
 import Button from './Button';
 import palette from '../../lib/styles/palette';
 import MenuImg from '../../assets/img/menu.png';
+import SjwImg from '../../assets/img/siwonschool.png';
 
 const HeaderBlock = styled.div`
 	position: fixed;
@@ -71,18 +72,24 @@ const Wrapper = styled(Responsive)`
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
-				width: 90%;
-				height: 80%;
+				width: 70%;
+				height: 100%;
 				padding: 6rem 2rem;
-				border-radius: 0 0 0 20px;
 				background: #fff;
 				box-sizing: border-box;
-				box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+				box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 
 				a {
 					width: 100%;
 					margin-bottom: 1rem;
 					text-align: left;
+				}
+
+				.sjwLogo {
+					opacity: 0.5;
+					position: absolute;
+					top: 50%;
+					left: calc(50% - 96.5px);
 				}
 
 				.right {
@@ -99,6 +106,7 @@ const Wrapper = styled(Responsive)`
 		.hamMenu {
 			z-index: 99;
 			display: block;
+			outline: none;
 		}
 	}
 `;
@@ -141,6 +149,10 @@ const Header = ({ user, onLogout }) => {
 					<div className={`gnb ${state}`}>
 						<Link to="/" className="menu">개요</Link>
 						<Link to="/postlistpage" className="menu">방명록</Link>
+
+						<div className="sjwLogo">
+							<img src={SjwImg} alt="" />
+						</div>
 
 						{user ? (
 							<div className="right">
