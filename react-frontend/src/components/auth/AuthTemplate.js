@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import { Link } from 'react-router-dom';
+import Responsive from '../common/Responsive';
 
 // 회원가입 / 로그인 페이지의 레이아웃을 담당하는 컴포넌트입니다.
 
@@ -20,7 +21,13 @@ const AuthTemplateBlock = styled.div`
 `;
 
 // 흰색 박스
-const WhiteBox = styled.div`
+const WhiteBox = styled(Responsive)`
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+	padding: 3rem 2rem;
+	width: 360px;
+	border-radius: 30px;
+	background: #fff;
+
 	.logo-area {
 		display: block;
 		padding-bottom: 2rem;
@@ -30,16 +37,15 @@ const WhiteBox = styled.div`
 
 		a {
 			font-family: lobster;
-			font-size: 23px;
+			font-size: 1.5rem;
 			color: #845ef7;
 		}
 	}
 
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-	padding: 3rem 2rem;
-	width: 360px;
-	border-radius: 30px;
-	background: #fff;
+	@media (max-width: 768px) {
+		width: 80%;
+		padding: 2rem 1.5rem;
+	}
 `;
 
 const AuthTemplate = ({ children }) => {

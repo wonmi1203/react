@@ -5,7 +5,6 @@ import Responsive from './Responsive';
 import Button from './Button';
 import palette from '../../lib/styles/palette';
 import MenuImg from '../../assets/img/menu.png';
-import ReactBg from '../../assets/img/react.webp';
 
 const HeaderBlock = styled.div`
 	position: fixed;
@@ -68,16 +67,17 @@ const Wrapper = styled(Responsive)`
 				opacity: 1;
 				position: fixed;
 				top: 0;
-				left: 0;
+				right: 0;
 				display: flex;
 				flex-direction: column;
 				justify-content: flex-start;
-				width: 100%;
-				height: 100%;
+				width: 90%;
+				height: 80%;
 				padding: 6rem 2rem;
-				background: #fff url(${ReactBg}) no-repeat;
-				background-position: center;
+				border-radius: 0 0 0 20px;
+				background: #fff;
 				box-sizing: border-box;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 
 				a {
 					width: 100%;

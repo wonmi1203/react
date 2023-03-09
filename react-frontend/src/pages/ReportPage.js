@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-	padding: 8rem 0;
+	padding: 8rem 1rem;
 	text-align-last : center;
 
 	li {

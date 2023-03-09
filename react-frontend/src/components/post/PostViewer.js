@@ -22,7 +22,7 @@ const PostHead = styled.div`
 	}
 `;
 
-const PostContent = styled.div`
+const PostContent = styled(Responsive)`
 	font-size: 1rem;
 	color: ${palette.gray[8]};
 `;
@@ -51,10 +51,11 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 
 			<PostHead>
 				<h1>{title}</h1>
+
 				<SubInfo
-				username={user.username}
-				publishedDate={publishedDate}
-				hasMarginTop
+					username={user.username}
+					publishedDate={publishedDate}
+					hasMarginTop
 				/>
 				<Tags tags={tags} />
 			</PostHead>
