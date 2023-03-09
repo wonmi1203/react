@@ -10,12 +10,12 @@ import { Helmet } from 'react-helmet-async';
 const PostViewerBlock = styled(Responsive)`
 	display: flex;
 	flex-direction: column;
-	align-items: flex-end;
+	align-items: center;
 	margin-top: 4rem;
 
 	.listBtn {
 		display: inline-block;
-		margin-bottom: 3rem;
+		margin: 5rem 0;
 		font-weight: 400;
 	}
 `;
@@ -60,10 +60,6 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 				<title>{title} - REACT</title>
 			</Helmet>
 
-			<Button cyan to="/postlistpage" className="listBtn">
-				목록
-			</Button>
-
 			<PostHead>
 				<h1>{title}</h1>
 
@@ -77,6 +73,10 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 
 			{UserI.username === user.username && actionButtons}
 			<PostContent dangerouslySetInnerHTML={{ __html: body }} />
+
+			<Button cyan to="/postlistpage" className="listBtn">
+				목록
+			</Button>
 		</PostViewerBlock>
 	);
 };
