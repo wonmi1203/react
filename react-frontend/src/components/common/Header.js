@@ -35,6 +35,10 @@ const Wrapper = styled(Responsive)`
 		align-items: center;
 		width: 75%;
 
+		.sjwLogo {
+			display: none;
+		}
+
 		.right {
 			display: flex;
 			align-items: center;
@@ -87,6 +91,7 @@ const Wrapper = styled(Responsive)`
 
 				.sjwLogo {
 					opacity: 0.5;
+					display: block;
 					position: absolute;
 					top: 50%;
 					left: calc(50% - 96.5px);
