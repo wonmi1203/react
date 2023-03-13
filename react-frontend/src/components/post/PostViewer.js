@@ -42,7 +42,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 	// 에러 발생 시
 	if (error) {
 		if (error.response && error.response.status === 404) {
-		return <PostViewerBlock>존재하지 않는 포스트입니다.</PostViewerBlock>;
+			return <PostViewerBlock>존재하지 않는 포스트입니다.</PostViewerBlock>;
 		}
 		return <PostViewerBlock>오류 발생!</PostViewerBlock>;
 	}
@@ -71,7 +71,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 				<Tags tags={tags} />
 			</PostHead>
 
-			{UserI.username === user.username && actionButtons}
+			{UserI.username === user.username ? actionButtons : ''}
 			<PostContent dangerouslySetInnerHTML={{ __html: body }} />
 
 			<Button cyan to="/postlistpage" className="listBtn">
