@@ -7,17 +7,20 @@ import { listPosts } from '../../modules/posts';
 
 const PostListContainer = ({ location }) => {
 	const dispatch = useDispatch();
+
 	const { posts, error, loading, user } = useSelector(
 		({ posts, loading, user }) => ({
-		posts: posts.posts,
-		error: posts.error,
-		loading: loading['posts/LIST_POSTS'],
-		user: user.user,
+			posts: posts.posts,
+			error: posts.error,
+			loading: loading['posts/LIST_POSTS'],
+			user: user.user,
+
 		}),
 	);
+
 	useEffect(() => {
 		const { tag, username, page } = qs.parse(location.search, {
-		ignoreQueryPrefix: true,
+			ignoreQueryPrefix: true,
 		});
 		dispatch(listPosts({ tag, username, page }));
 	}, [dispatch, location.search]);

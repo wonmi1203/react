@@ -17,6 +17,7 @@ const PostViewerContainer = ({ match, history }) => {
 			error: post.error,
 			loading: loading['post/READ_POST'],
 			user: user.user,
+
 		}),
 	);
 
