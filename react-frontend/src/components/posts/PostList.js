@@ -51,50 +51,40 @@ const PostItemBlock = styled.div`
 `;
 
 const PostItem = ({ post }) => {
-	const [items, setItems] = useState(Array.from({ length: 3 }, (_, i) => i));
-
-	const fetchMoreData = () => {
-		setTimeout(() => {
-		setItems(prevItems => [...prevItems, ...Array.from({ length: 3 }, (_, i) => prevItems.length + i)]);
-		}, 1500);
-	};
-
 	const { publishedDate, user, tags, title, body, _id } = post;
 
 	return (
-		<InfiniteScroll
-			dataLength={items.length}
-			next={fetchMoreData}
-			hasMore={true}
-			loader={<h4>Loading...</h4>}
-		>
-			{items.map(item => (
-				<PostItemBlock key={item}>
-					<h2>
-					<Link to={`/@${user.username}/${_id}`}>{title}</Link>
-					</h2>
-					<SubInfo
-					username={user.username}
-					publishedDate={new Date(publishedDate)}
-					/>
-					<Tags tags={tags} />
-					<p>{body}</p>
-				</PostItemBlock>
-			))}
-		</InfiniteScroll>
+		<PostItemBlock>
+			<h2>
+			<Link to={`/@${user.username}/${_id}`}>{title}</Link>
+			</h2>
+			<SubInfo
+			username={user.username}
+			publishedDate={new Date(publishedDate)}
+			/>
+			<Tags tags={tags} />
+			<p>{body}</p>
+		</PostItemBlock>
 	);
 };
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
+	const [items, setItems] = useState(Array.from({ length: 1 }, (_, i) => i));
+
+	const fetchMoreData = () => {
+		setTimeout(() => {
+			setItems(prevItems => [...prevItems, ...Array.from({ length: 1 }, (_, i) => prevItems.length + i)]);
+		}, 1500);
+	};
+
 	// 에러 발생 시
 	if (error) {
 		return <PostListBlock>에러가 발생했습니다.</PostListBlock>;
 	}
 
-	// if (!loading && posts) {
-	// 	console.log(posts);
-	// 	console.log(Object.keys(posts).length);
-	// }
+	if (!loading && posts) {
+		console.log(posts.length);
+	}
 
 	return (
 		<PostListBlock>
@@ -108,11 +98,20 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
 			{/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
 			{!loading && posts && (
-				<div>
-					{posts.map(post => (
-						<PostItem post={post} key={post._id} />
+				<InfiniteScroll
+					dataLength = {posts.length}
+					next = {fetchMoreData}
+					hasMore = {true}
+					loader = {<h4>Loading...</h4>}
+				>
+					{items.map(item => (
+						<div key={item}>
+							{posts.map(post => (
+								<PostItem post={post} key={post._id} />
+							))}
+						</div>
 					))}
-				</div>
+				</InfiniteScroll>
 			)}
 		</PostListBlock>
 	);
