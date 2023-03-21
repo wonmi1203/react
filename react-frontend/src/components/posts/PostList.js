@@ -69,50 +69,40 @@ const PostItem = ({ post }) => {
 };
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
-	const [items, setItems] = useState(Array.from({ length: 1 }, (_, i) => i));
+	const [items, setItems] = useState(Array.from({ length: 5 }, (_, i) => i));
 
 	const fetchMoreData = () => {
 		setTimeout(() => {
-			setItems(prevItems => [...prevItems, ...Array.from({ length: 1 }, (_, i) => prevItems.length + i)]);
+			setItems(prevItems => [...prevItems, prevItems.length]);
 		}, 1500);
 	};
 
-	// 에러 발생 시
 	if (error) {
 		return <PostListBlock>에러가 발생했습니다.</PostListBlock>;
 	}
 
-	if (!loading && posts) {
-		console.log(posts.length);
-	}
-
 	return (
 		<PostListBlock>
-			<WritePostButtonWrapper>
-				{showWriteButton && (
-					<Button cyan to="/write">
-						작성하기
-					</Button>
-				)}
-			</WritePostButtonWrapper>
-
-			{/*  로딩 중 아니고, 포스트 배열이 존재할 때만 보여줌 */}
-			{!loading && posts && (
-				<InfiniteScroll
-					dataLength = {posts.length}
-					next = {fetchMoreData}
-					hasMore = {true}
-					loader = {<h4>Loading...</h4>}
-				>
-					{items.map(item => (
-						<div key={item}>
-							{posts.map(post => (
-								<PostItem post={post} key={post._id} />
-							))}
-						</div>
-					))}
-				</InfiniteScroll>
+		<WritePostButtonWrapper>
+			{showWriteButton && (
+			<Button cyan to="/write">
+				작성하기
+			</Button>
 			)}
+		</WritePostButtonWrapper>
+
+		{!loading && posts && (
+			<InfiniteScroll
+			dataLength={items.length}
+			next={fetchMoreData}
+			hasMore={true}
+			loader={<h4>Loading...</h4>}
+			>
+			{items.map((item, index) => (
+				<PostItem post={posts[index]} key={posts[index]._id} />
+			))}
+			</InfiniteScroll>
+		)}
 		</PostListBlock>
 	);
 };
