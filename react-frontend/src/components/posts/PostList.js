@@ -69,12 +69,20 @@ const PostItem = ({ post }) => {
 };
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
-	const [items, setItems] = useState(Array.from({ length: 5 }, (_, i) => i));
+	const [items, setItems] = useState(Array.from({ length: 3 }, (_, i) => i)); // 먼저 보여줄 데이터 갯수
+	const [hasMore, setHasMore] = useState(true);
 
 	const fetchMoreData = () => {
 		setTimeout(() => {
-			setItems(prevItems => [...prevItems, prevItems.length]);
-		}, 1500);
+			const startIndex = items.length;
+			const newItems = posts.slice(startIndex, startIndex + 3); // 더 가져올 데이터 갯수
+
+			if (newItems.length === 0) {
+				setHasMore(false);
+			} else {
+				setItems(prevItems => [...prevItems, ...newItems]);
+			}
+		}, 500);
 	};
 
 	if (error) {
@@ -83,26 +91,27 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
 	return (
 		<PostListBlock>
-		<WritePostButtonWrapper>
-			{showWriteButton && (
-			<Button cyan to="/write">
-				작성하기
-			</Button>
-			)}
-		</WritePostButtonWrapper>
+			<WritePostButtonWrapper>
+				{showWriteButton && (
+					<Button cyan to="/write">
+						작성하기
+					</Button>
+				)}
+			</WritePostButtonWrapper>
 
-		{!loading && posts && (
-			<InfiniteScroll
-			dataLength={items.length}
-			next={fetchMoreData}
-			hasMore={true}
-			loader={<h4>Loading...</h4>}
-			>
-			{items.map((item, index) => (
-				<PostItem post={posts[index]} key={posts[index]._id} />
-			))}
-			</InfiniteScroll>
-		)}
+			{!loading && posts && (
+				<InfiniteScroll
+					style={{ overflow: 'hidden' }}
+					dataLength = {items.length} // 데이터 길이
+					next = {fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
+					hasMore = {hasMore} // 바닥에 도달시 함수 호출 여부
+					loader = {<h4>Loading...</h4>} // 로더 구성요소
+				>
+					{items.map((item, index) => (
+						<PostItem post={posts[index]} key={posts[index]._id} />
+					))}
+				</InfiniteScroll>
+			)}
 		</PostListBlock>
 	);
 };
