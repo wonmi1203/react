@@ -14,17 +14,24 @@ class Comment extends Component {
     return (
       <div>
         <h2>댓글 목록</h2>
-        <CommentList comments={this.state.comments} />
-        <CommentForm addComment={this.addComment.bind(this)} />
-
+        <CommentList comments={this.state.comments} addComment={this.addComment.bind(this)} />
+        <CommentForm parentId={null} addComment={this.addComment.bind(this)} />
       </div>
     );
   }
 
-  addComment(comment) {
+  addComment(comment, parentId) {
     const comments = this.state.comments.slice();
-    comments.push(comment);
+    const newComment = {
+      id: comments.length,
+      text: comment,
+      parentId: parentId
+    };
+    comments.push(newComment);
     this.setState({ comments: comments });
+    comments.map((comment) => {
+      console.log(comment)
+    });
   }
 }
 
