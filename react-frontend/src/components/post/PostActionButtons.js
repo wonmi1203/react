@@ -6,8 +6,8 @@ import AskRemoveModal from './AskRemoveModal';
 const PostActionButtonsBlock = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	margin-bottom: 2rem;
-	margin-top: -1.5rem;
+	width: 100%;
+	margin-top: 1rem;
 `;
 
 const ActionButton = styled.button`
@@ -19,11 +19,8 @@ const ActionButton = styled.button`
 	outline: none;
 	font-size: 0.875rem;
 	cursor: pointer;
-
-	&:hover {
-		background: ${palette.gray[1]};
-		color: ${palette.cyan[7]};
-	}
+	background: ${palette.gray[1]};
+	color: ${palette.cyan[7]};
 
 	& + & {
 		margin-left: 0.25rem;
