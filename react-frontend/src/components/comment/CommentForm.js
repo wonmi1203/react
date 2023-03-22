@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '../common/Button';
+import palette from '../../lib/styles/palette';
+
+const CommentInput = styled.div`
+	form {
+		display: flex;
+		justify-content: space-between;
+		align-itmes: center;
+
+		input {
+			width: 92.5%;
+			height: 2.5rem;
+			border-radius: 5rem;
+			border: 0.5px solid ${palette.violet[2]};
+			padding: 0 1rem;
+			outline: none;
+		}
+
+		button {
+			border-radius: 5rem;
+			font-weight: 400;
+		}
+	}
+`;
 
 class CommentForm extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
-		comment: '',
-		showInput: false
+			comment: '',
+			showInput: false
 		};
 	}
 
@@ -18,31 +42,35 @@ class CommentForm extends Component {
 			let button;
 
 			if (cancelButton) {
-				button = <Button onClick={() => this.setState({ showInput: false })}>
-					&nbsp;&nbsp;&nbsp;취소
+				button =
+				<Button onClick={() => this.setState({ showInput: false })}>
+					취소
 				</Button>
 			} else {
 				button = null;
 			}
 			return (
-				<form onSubmit={this.handleSubmit.bind(this)}>
-				<input
-					type="text"
-					placeholder={placeholderText}
-					value={this.state.comment}
-					onChange={this.handleInputChange.bind(this)}
-				/>
-				<Button type="submit">등록</Button>
-					{button}
-				</form>
+				<CommentInput>
+					<form onSubmit={this.handleSubmit.bind(this)}>
+						<input
+							type="text"
+							placeholder={placeholderText}
+							value={this.state.comment}
+							onChange={this.handleInputChange.bind(this)}
+						/>
+						<Button type="submit">등록</Button>
+						{button}
+					</form>
+				</CommentInput>
 			);
-			} else {
+		} else {
 			if (this.props.reply) {
 				return null
 			}
+
 			return (
 				<Button onClick={() => this.setState({ showInput: true })}>
-				&nbsp;&nbsp;&nbsp;답글 작성
+					답글 작성
 				</Button>
 			);
 		}

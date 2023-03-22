@@ -10,7 +10,7 @@ const CommentBlock = styled.div`
 	h2 {
 		font-family: lobster;
 		font-size: 1.1rem;
-		margin-bottom: 0.5rem;
+		margin-bottom: 2rem;
 	}
 `
 
