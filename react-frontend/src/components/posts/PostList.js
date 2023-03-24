@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import Button from '../common/Button';
@@ -58,10 +58,7 @@ const PostItem = ({ post }) => {
 			<h2>
 			<Link to={`/@${user.username}/${_id}`}>{title}</Link>
 			</h2>
-			<SubInfo
-			username={user.username}
-			publishedDate={new Date(publishedDate)}
-			/>
+			<SubInfo username={user.username} publishedDate={new Date(publishedDate)} />
 			<Tags tags={tags} />
 			<p>{body}</p>
 		</PostItemBlock>
@@ -69,39 +66,55 @@ const PostItem = ({ post }) => {
 };
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
-	const [items, setItems] = useState(Array.from({ length: 3 }, (_, i) => i)); // 먼저 보여줄 데이터 갯수
-	const [hasMore, setHasMore] = useState(true);
+	const [items, setItems] = useState(posts?.slice(0, 3) || []); // 먼저 보여줄 데이터 갯수
+	const [hasMore, setHasMore] = useState(posts?.length > 3); // 더 가져올 데이터 갯수
+
+	useEffect(() => {
+		if (posts) {
+			setItems(posts.slice(0, 3));
+			setHasMore(posts.length > 3);
+		}
+	}, [posts]);
 
 	const fetchMoreData = () => {
+		if (!posts) return;
+
 		setTimeout(() => {
 			const startIndex = items.length;
-			const newItems = posts.slice(startIndex, startIndex + 3); // 더 가져올 데이터 갯수
-
-			if (newItems.length === 0) {
+			let newItems = [];
+			if (posts.length - startIndex <= 3) {
+				// 남은 데이터가 3개 미만인 경우, 남은 모든 데이터를 가져옴
+				newItems = posts.slice(startIndex, posts.length);
 				setHasMore(false);
 			} else {
-				setItems(prevItems => [...prevItems, ...newItems]);
+				// 아직 더 가져올 데이터가 있는 경우
+				newItems = posts.slice(startIndex, startIndex + 3);
+				setHasMore(true);
 			}
+			setItems((prevItems) => [...prevItems, ...newItems]);
 		}, 500);
 	};
 
+
 	if (error) {
 		return <PostListBlock>에러가 발생했습니다.</PostListBlock>;
+	}
+
+	if (!loading && !Array.isArray(posts)) {
+		return <PostListBlock>게시글이 없습니다.</PostListBlock>;
 	}
 
 	return (
 		<PostListBlock>
 			<WritePostButtonWrapper>
 				{showWriteButton && (
-					<Button cyan to="/write">
-						작성하기
-					</Button>
+					<Button cyan to="/write">작성하기</Button>
 				)}
 			</WritePostButtonWrapper>
 
-			{!loading && posts && (
+			{!loading && Array.isArray(posts) && (
 				<InfiniteScroll
-					style={{ overflow: 'hidden' }}
+					style = {{ overflow: 'hidden' }}
 					dataLength = {items.length} // 데이터 길이
 					next = {fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
 					hasMore = {hasMore} // 바닥에 도달시 함수 호출 여부
@@ -112,6 +125,8 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 					))}
 				</InfiniteScroll>
 			)}
+
+			{items.length === 0 && <PostListBlock>게시글이 없습니다.</PostListBlock>}
 		</PostListBlock>
 	);
 };
