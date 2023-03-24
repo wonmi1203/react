@@ -10,7 +10,7 @@ const SubInfoBlock = styled(Responsive)`
 		css`
 			margin-top: 1rem;
 	`}
-
+	width: 100%;
 	text-align: right;
 	font-size: 15px;
 	color: ${palette.gray[6]};

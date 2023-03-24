@@ -11,6 +11,7 @@ import queryString from 'query-string';
 
 const PostListBlock = styled(Responsive)`
 	margin-top: 3rem;
+	padding-bottom: 10rem;
 `;
 
 const WritePostButtonWrapper = styled.div`

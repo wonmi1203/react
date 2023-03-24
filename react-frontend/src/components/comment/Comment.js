@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import CommentForm from './CommentForm';
 import CommentList from './CommentList';
 import styled from 'styled-components';
+import Responsive from '../common/Responsive';
 
-const CommentBlock = styled.div`
+const CommentBlock = styled(Responsive)`
 	width: 100%;
 	padding: 2rem;
 
@@ -11,6 +12,10 @@ const CommentBlock = styled.div`
 		font-family: lobster;
 		font-size: 1.1rem;
 		margin-bottom: 2rem;
+	}
+
+	@media (max-width: 1024px) {
+		padding: 2rem 1rem;
 	}
 `
 

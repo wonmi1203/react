@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Button from '../common/Button';
 import palette from '../../lib/styles/palette';
+import Responsive from '../common/Responsive';
 
-const CommentInput = styled.div`
+const CommentInput = styled(Responsive)`
+	width: 100%;
+
 	form {
 		display: flex;
 		justify-content: space-between;
 		align-itmes: center;
 
 		input {
-			width: 92.5%;
+			width: 100%;
 			height: 2.5rem;
 			border-radius: 5rem;
 			border: 0.5px solid ${palette.violet[2]};
@@ -19,6 +22,9 @@ const CommentInput = styled.div`
 		}
 
 		button {
+			min-width: 4rem;
+			height: 2.5rem;
+			margin-left: 0.5rem;
 			border-radius: 5rem;
 			font-weight: 400;
 		}

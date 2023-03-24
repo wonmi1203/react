@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Responsive from '../common/Responsive';
 
-const SearchBlock = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	width: 1024px;
+const SearchBlock = styled(Responsive)`
+	width: 100%;
 	margin: 0 auto;
-	padding: 2rem;
+	padding-top: 5rem;
 
-	.search_input {
-		width: 500px;
-		height: 3rem;
-		padding: 0 0.5rem;
-		border: none;
-		border-bottom: 1px solid #000;
-		outline: none;
+	form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.search_input {
+			width: 500px;
+			height: 2.5rem;
+			margin-right: 0.5rem;
+			border-radius: 5rem;
+			border: 0.5px solid #d0bfff;
+			padding: 0 1rem;
+			outline: none;
+		}
+
+		.serach_submit {
+			height: 2.5rem;
+			padding: 0.25rem 1rem;
+			border-radius: 5rem;
+			border: none;
+			background: #9775fa;
+			font-weight: 400;
+			font-size: 1rem;
+			color: #fff;
+			outline: none;
+			cursor: pointer;
+		}
 	}
 
-	.serach_submit {
-		margin-left: 0.5rem;
-		font-weight: 400;
+	@media (max-width: 768px) {
+		padding: 3rem 1rem;
+
+		.search_input {
+			width: 100%;
+		}
+
+		.serach_submit {
+		}
 	}
 `;
 
