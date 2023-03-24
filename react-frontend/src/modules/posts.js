@@ -13,7 +13,7 @@ const [
 
 export const listPosts = createAction(
 	LIST_POSTS,
-	({ tag, username, page }) => ({ tag, username, page }),
+	({ tag, username, page, search }) => ({ tag, username, page, search }),
 );
 
 const listPostsSaga = createRequestSaga(LIST_POSTS, postsAPI.listPosts);

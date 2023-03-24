@@ -6,6 +6,8 @@ import PostList from '../../components/posts/PostList';
 import { listPosts } from '../../modules/posts';
 
 const PostListContainer = ({ location }) => {
+
+
 	const dispatch = useDispatch();
 
 	const { posts, error, loading, user } = useSelector(
@@ -19,10 +21,11 @@ const PostListContainer = ({ location }) => {
 	);
 
 	useEffect(() => {
-		const { tag, username, page } = qs.parse(location.search, {
+		const { tag, username, page, search } = qs.parse(location.search, {
 			ignoreQueryPrefix: true,
 		});
-		dispatch(listPosts({ tag, username, page }));
+
+		dispatch(listPosts({ tag, username, page, search }));
 	}, [dispatch, location.search]);
 
 	return (

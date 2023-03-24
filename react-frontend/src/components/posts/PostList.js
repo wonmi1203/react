@@ -7,6 +7,7 @@ import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Link } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import queryString from 'query-string';
 
 const PostListBlock = styled(Responsive)`
 	margin-top: 3rem;
@@ -49,6 +50,11 @@ const PostItemBlock = styled.div`
 		font-size: 1rem;
 	}
 `;
+let search = queryString.parse(window.location.search);
+
+if (search) {
+	search = search.search;
+}
 
 const PostItem = ({ post }) => {
 	const { publishedDate, user, tags, title, body, _id } = post;
@@ -56,7 +62,7 @@ const PostItem = ({ post }) => {
 	return (
 		<PostItemBlock>
 			<h2>
-			<Link to={`/@${user.username}/${_id}`}>{title}</Link>
+				<Link to={`/@${user.username}/${_id}`}>{title}</Link>
 			</h2>
 			<SubInfo username={user.username} publishedDate={new Date(publishedDate)} />
 			<Tags tags={tags} />
@@ -114,11 +120,11 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
 			{!loading && Array.isArray(posts) && (
 				<InfiniteScroll
-					style = {{ overflow: 'hidden' }}
-					dataLength = {items.length} // 데이터 길이
-					next = {fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
-					hasMore = {hasMore} // 바닥에 도달시 함수 호출 여부
-					loader = {<h4>Loading...</h4>} // 로더 구성요소
+					style={{ overflow: 'hidden' }}
+					dataLength={items.length} // 데이터 길이
+					next={fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
+					hasMore={hasMore} // 바닥에 도달시 함수 호출 여부
+					loader={<h4>Loading...</h4>} // 로더 구성요소
 				>
 					{items.map((item, index) => (
 						<PostItem post={posts[index]} key={posts[index]._id} />
