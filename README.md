@@ -36,3 +36,20 @@ react
 node -v  버전 16.18.0
 npm -v 버전  9.5.1
 
+node 버전 다운그레이드 방법
+https://ahn3330.tistory.com/45 사이트 참조
+
+https://github.com/coreybutler/nvm-windows/releases
+사이트 접속후 nvm 설치
+
+node -v // 노드 현재버전 확인
+nvm install <노드 버전> // 변경할 버전을 설치
+nvm use <노드 버전> // 설치한 버전으로 변경
+node -v // 변경된 노드 버전 확인
+
+npm 버전 다운그레이드 방법
+windows powershell 관리자실행
+get-ExecutionPolicy 명령어입력
+결과값이 RemoteSigned 가 아닌경우 
+Set-ExecutionPolicy RemoteSigned 명령어 입력 후 나오는메세지에서 Y 
+npm install -g npm@<버전>
