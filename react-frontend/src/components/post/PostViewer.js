@@ -42,7 +42,7 @@ const PostContent = styled(Responsive)`
 	border-bottom: 1px solid ${palette.gray[2]};
 `;
 
-const PostViewer = ({ post, error, loading, actionButtons }) => {
+const PostViewer = ({ post, error, loading, actionButtons, postId }) => {
 	// 에러 발생 시
 	if (error) {
 		if (error.response && error.response.status === 404) {
@@ -78,7 +78,7 @@ const PostViewer = ({ post, error, loading, actionButtons }) => {
 			{UserI.username === user.username ? actionButtons : ''}
 			<PostContent dangerouslySetInnerHTML={{ __html: body }} />
 
-			<Comment />
+			<Comment postId={postId} username={user.username}/>
 
 			<Button cyan to="/postlistpage" className="listBtn">
 				목록

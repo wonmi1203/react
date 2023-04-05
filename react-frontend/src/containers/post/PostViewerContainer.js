@@ -49,6 +49,7 @@ const PostViewerContainer = ({ match, history }) => {
 			loading={loading}
 			error={error}
 			actionButtons={<PostActionButtons onEdit={onEdit} onRemove={onRemove} />}
+			postId = {postId}
 			ownPost={user && user.id === post && post.id}
 		/>
 	);
