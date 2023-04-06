@@ -22,6 +22,7 @@ const CommentInputBar = styled(Responsive)`
 	display: flex;
 	justify-content: center;
 	padding-bottom: 3rem;
+	width: 100%;
 `;
 
 const CommentButtonBlock = styled.div`
