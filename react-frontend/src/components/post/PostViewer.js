@@ -4,17 +4,17 @@ import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
+import Button from '../../components/common/Button';
 import { Helmet } from 'react-helmet-async';
 
 const PostViewerBlock = styled(Responsive)`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-end;
 	margin-top: 4rem;
 
 	.listBtn {
-		display: inline-block;
-		margin: 5rem 0;
+		margin-bottom: 20px;
 		font-weight: 400;
 	}
 `;
@@ -33,7 +33,7 @@ const PostHead = styled.div`
 
 const PostContent = styled(Responsive)`
 	width: 100%;
-	min-height: 20rem;
+	min-height: 30rem;
 	padding: 2rem;
 	font-size: 1rem;
 	color: ${palette.gray[8]};
@@ -61,6 +61,10 @@ const PostViewer = ({ post, error, loading, actionButtons, postId }) => {
 			<Helmet>
 				<title>{title} - REACT</title>
 			</Helmet>
+
+			<Button cyan to="/postlistpage" className="listBtn">
+				목록
+			</Button>
 
 			<PostHead>
 				<h1>{title}</h1>
