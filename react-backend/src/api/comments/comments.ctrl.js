@@ -7,10 +7,10 @@ export const write = async (ctx) => {
     const comment = new Comment({
         postId: ctx.params.postId,
         authorId: ctx.state.user._id,
+        parent: ctx.request.body.parent,
         body: body.toString(),
     });
     try {
-        console.log(ctx.state.user);
         await comment.save();
         const comments = await Comment.find({ postId: ctx.params.postId })
             .populate('authorId', 'username')

@@ -8,6 +8,7 @@ import { takeLatest } from 'redux-saga/effects';
 const INITIALIZE = 'write/INITIALIZE'; // 모든 내용 초기화
 
 const CHANGE_INPUT = 'comment/CHANGE_INPUT';
+const CHANGE_INPUT_PARENT = 'comment/CHANGE_INPUT_PARENT';
 
 const [
 	WRITE_COMMENT,
@@ -33,9 +34,11 @@ const CANCEL_REMOVE_COMMENT = 'comment/CANCEL_REMOVE_COMMENT';
 
 
 export const changeInput = createAction(CHANGE_INPUT, (body) => body);
-export const writeComment = createAction(WRITE_COMMENT, (postId, body) => ({
+export const changeInputparent = createAction(CHANGE_INPUT_PARENT, (parent) => parent);
+export const writeComment = createAction(WRITE_COMMENT, (postId, body, parent) => ({
 	postId,
-	body
+	body,
+	parent
 }));
 
 export const toggleAskRemove = createAction(TOGGLE_ASK_REMOVE);
@@ -86,6 +89,10 @@ const comments = handleActions(
 		[CHANGE_INPUT]: (state, { payload: body }) => ({
 			...state,
 			body: body,
+		}),
+		[CHANGE_INPUT_PARENT]: (state, { payload: parent }) => ({
+			...state,
+			parent: parent,
 		}),
 		[WRITE_COMMENT]: (state) => ({
 			// comments와 commentError를 초기화

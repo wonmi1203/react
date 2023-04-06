@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
@@ -51,36 +51,49 @@ const ActionButton = styled.span`
 	}
 `;
 
-const CommentItem = ({ user, comment, onToggleAskRemove }) => {
-	return (
-		<CommentItemBlock>
-			<div className='infoList'>
-				<SubInfo
-					username={comment.authorId.username}
-					publishedDate={comment.createdAt}
-				/>
+const CommentItem = ({ user, comment, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
+  const [replying, setReplying] = useState(false);
 
-				{user && user._id === comment.authorId._id && (
-					<CommentActionButtonsBlock>
-						<ActionButton>답글</ActionButton>
-						<ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
-					</CommentActionButtonsBlock>
-				)}
-			</div>
+  const onClickReplyButton = () => {
+    setReplying(true);
+    onChangeParentInput(comment._id);
+  };
 
-			<p>{comment.body}</p>
-		</CommentItemBlock>
-	);
+  const onChange = (e) => onChangeCommentInput(e.target.value);
+
+  return (
+    <CommentItemBlock>
+      <SubInfo username={comment.authorId.username} publishedDate={comment.createdAt} />
+      {user && user._id === comment.authorId._id && (
+        <CommentActionButtonsBlock>
+          <ActionButton onClick={onClickReplyButton}>답글</ActionButton>
+          <ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
+        </CommentActionButtonsBlock>
+      )}
+      <p>{comment.body}</p>
+      {replying && (
+        <form onSubmit={onWriteComment}>
+          <textarea
+            value={body}
+            onChange={onChange}
+            placeholder={`${comment.authorId.username}님에게 답글 남기기`}
+            style={{ width: '100%', height: '5rem', marginBottom: '1rem' }}
+          />
+          <button type="submit">등록</button>
+        </form>
+      )}
+    </CommentItemBlock>
+  );
 };
 
-const CommentsList = ({ loading, user, comments, onToggleAskRemove }) => {
+const CommentsList = ({ loading, user, comments, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
 	return (
 		<CommentsListBlock>
 			<div>
 				{!loading && comments && (
 				<div>
 					{comments.map(comment => (
-					<CommentItem user={user} comment={comment} onToggleAskRemove={onToggleAskRemove} key={comment._id} />
+					<CommentItem user={user} comment={comment} onToggleAskRemove={onToggleAskRemove} key={comment._id} onChangeParentInput={onChangeParentInput} onChangeCommentInput={onChangeCommentInput} body={body} onWriteComment={onWriteComment}/>
 					))}
 				</div>
 				)}

@@ -40,7 +40,7 @@ const CommentButtonBlock = styled.div`
 	}
 `;
 
-const CommentsViewer = ({ loading, user, body, onChangeCommentInput, onWriteComment, comments, onToggleAskRemove }) => {
+const CommentsViewer = ({ loading, user, body, onChangeCommentInput, onChangeParentInput, onWriteComment, comments, onToggleAskRemove }) => {
 	return (
 		<CommentsViewerBlock>
 			<h1>Comment</h1>
@@ -52,7 +52,7 @@ const CommentsViewer = ({ loading, user, body, onChangeCommentInput, onWriteComm
 				</CommentButtonBlock>
 			</CommentInputBar>
 
-			<CommentsList user={user} comments={comments} loading={loading} onToggleAskRemove={onToggleAskRemove} />
+			<CommentsList user={user} comments={comments} loading={loading} onToggleAskRemove={onToggleAskRemove} onChangeCommentInput={onChangeCommentInput} onChangeParentInput={onChangeParentInput} body={body} onWriteComment={onWriteComment} />
 		</CommentsViewerBlock>
 	);
 };

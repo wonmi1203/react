@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import CommentsViewer from '../../components/comments/CommentsViewer';
 import {
     changeInput,
+    changeInputparent,
     writeComment,
     toggleAskRemove,
 } from '../../modules/comments';
@@ -17,9 +18,10 @@ import AskModal from '../../components/common/AskModal';
 const CommentsViewerContainer = ({ match, history }) => {
     const { postId } = match.params;
     const dispatch = useDispatch();
-    const { user, body, comments, commentId, askRemove, loading } = useSelector(
+    const { user, body, parent, comments, commentId, askRemove, loading } = useSelector(
         ({ user, comments, loading }) => ({
             body: comments.body,
+            parent : comments.parent,
             comments: comments.comments,
             commentId: comments.removeComment.commentId,
             askRemove: comments.askRemove,
@@ -37,9 +39,14 @@ const CommentsViewerContainer = ({ match, history }) => {
         [dispatch],
     );
 
+    const onChangeParentInput = useCallback(
+        (parent) => dispatch(changeInputparent(parent)),
+        [dispatch],
+    );
+
     const onWriteComment = useCallback(() => {
-        dispatch(writeComment(postId, body));
-    }, [dispatch, postId, body]);
+        dispatch(writeComment(postId, body, parent));
+    }, [dispatch, postId, body, parent]);
 
     const onToggleAskRemove = useCallback(
         (commentId) => {
@@ -63,6 +70,7 @@ const CommentsViewerContainer = ({ match, history }) => {
                 user={user}
                 body={body}
                 onChangeCommentInput={onChangeCommentInput}
+                onChangeParentInput={onChangeParentInput}
                 onWriteComment={onWriteComment}
                 comments={comments}
                 onToggleAskRemove={onToggleAskRemove}

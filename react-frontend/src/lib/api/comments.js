@@ -1,7 +1,7 @@
 import client from './client';
 
-export const writeComment = ({ postId, body }) =>
-	client.post(`/api/posts/${postId}/comments`, { body });
+export const writeComment = ({ postId, body, parent }) =>
+	client.post(`/api/posts/${postId}/comments`, { body, parent });
 
 export const listComments = (postId) => client.get(`/api/posts/${postId}/comments`);
 
