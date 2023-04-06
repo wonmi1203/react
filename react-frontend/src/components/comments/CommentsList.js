@@ -53,7 +53,7 @@ const CommentItem = ({ user, comment, onToggleAskRemove }) => {
       />
       {user && user._id === comment.authorId._id && (
         <CommentActionButtonsBlock>
-          <ActionButton>수정</ActionButton>
+          <ActionButton>답글</ActionButton>
           <ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
         </CommentActionButtonsBlock>
       )}
