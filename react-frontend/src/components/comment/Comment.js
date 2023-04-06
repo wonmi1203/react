@@ -38,6 +38,7 @@ class Comment extends Component {
 	}
 
 	addComment(comment, parentId) {
+<<<<<<< Updated upstream
 		const comments = this.state.comments.slice();
 		const newComment = {
 			id: comments.length,
@@ -54,3 +55,31 @@ class Comment extends Component {
 }
 
 export default Comment;
+=======
+	  const comments = this.state.comments.slice();
+	  const newComment = {
+		id: comments.length,
+		text: comment,
+		parentId: parentId,
+	  };
+	  comments.push(newComment);
+	  this.setState({ comments: comments });
+  
+	  const { postId, username } = this.state;
+	  this.props.writeCommentStore({postId, parentId, comment, username});
+	}
+  }
+  
+  const mapStateToProps = (state) => ({
+	storeComment: state.comments,
+  });
+  
+  const mapDispatchToProps = (dispatch) => ({
+	writeCommentStore: (postId, parentId, comment, username) => {
+	  //console.log(postId, parentId, comment, username);
+	  dispatch(actions.writeComment(postId, parentId, comment, username));
+	},
+  });
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Comment);
+>>>>>>> Stashed changes
