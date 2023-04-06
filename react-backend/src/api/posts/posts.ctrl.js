@@ -143,6 +143,7 @@ export const list = async (ctx) => {
       .lean()
       .exec();
 
+    console.log(posts);
     const postCount = await Post.countDocuments(query).exec();
     ctx.set('Last-Page', Math.ceil(postCount / 10));
     ctx.body = posts.map((post) => ({
