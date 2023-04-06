@@ -20,7 +20,7 @@ const SearchBlock = styled(Responsive)`
 			border: 0.5px solid #d0bfff;
 			padding: 0 1rem;
 			outline: none;
-		} 
+		}
 
 		.serach_submit {
 			height: 2.5rem;

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import CommentInput from '../comments/CommentInput';
 import Button from '../../components/common/Button';
-import palette from '../../lib/styles/palette';
 import CommentsList from '../comments/CommentsList';
 
 const CommentsViewerBlock = styled(Responsive)`
