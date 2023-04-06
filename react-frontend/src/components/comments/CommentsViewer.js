@@ -8,6 +8,9 @@ import CommentsList from '../comments/CommentsList';
 
 const CommentsViewerBlock = styled(Responsive)`
   margin-top: 4rem;
+  display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 const CommentButtonBlock = styled.div`

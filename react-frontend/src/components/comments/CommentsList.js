@@ -25,18 +25,18 @@ const CommentActionButtonsBlock = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 2rem;
-  margin-top: -1.5rem;
+  margin-right:17px;
 `;
 
 const ActionButton = styled.span`
-  color: ${palette.gray[6]};
+  color: ${palette.violet[6]};
   border: none;
   outline: none;
   font-size: 0.875rem;
   cursor: pointer;
   &:hover {
     text-decoration:underline;
-    background: ${palette.gray[1]};
+    background: ${palette.violet[1]};
     color: ${palette.cyan[7]};
   }
   & + & {
@@ -45,37 +45,37 @@ const ActionButton = styled.span`
 `;
 
 const CommentItem = ({ user, comment, onToggleAskRemove }) => {
-    return (
-        <CommentItemBlock>
-            <SubInfo
-                username={comment.authorId.username}
-                publishedDate={comment.createdAt}
-            />
-            {user && user._id === comment.authorId._id && (
-                <CommentActionButtonsBlock>
-                    <ActionButton>수정</ActionButton>
-                    <ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
-                </CommentActionButtonsBlock>
-            )}
-            <p>{comment.body}</p>
-        </CommentItemBlock>
-    );
+  return (
+    <CommentItemBlock>
+      <SubInfo
+        username={comment.authorId.username}
+        publishedDate={comment.createdAt}
+      />
+      {user && user._id === comment.authorId._id && (
+        <CommentActionButtonsBlock>
+          <ActionButton>수정</ActionButton>
+          <ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
+        </CommentActionButtonsBlock>
+      )}
+      <p>{comment.body}</p>
+    </CommentItemBlock>
+  );
 };
 
 const CommentsList = ({ loading, user, comments, onToggleAskRemove }) => {
-    return (
-        <CommentsListBlock>
-            <div>
-                {!loading && comments && (
-                    <div>
-                        {comments.map(comment => (
-                            <CommentItem user={user} comment={comment} onToggleAskRemove={onToggleAskRemove} key={comment._id} />
-                        ))}
-                    </div>
-                )}
-            </div>
-        </CommentsListBlock>
-    );
+  return (
+    <CommentsListBlock>
+      <div>
+        {!loading && comments && (
+          <div>
+            {comments.map(comment => (
+              <CommentItem user={user} comment={comment} onToggleAskRemove={onToggleAskRemove} key={comment._id} />
+            ))}
+          </div>
+        )}
+      </div>
+    </CommentsListBlock>
+  );
 };
 
 export default CommentsList;
