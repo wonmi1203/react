@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
-import Button from '../common/Button';
 import SubInfo from '../common/SubInfo';
 import Tags from '../common/Tags';
 import { Helmet } from 'react-helmet-async';
-import Comment from '../comment/Comment';
 
 const PostViewerBlock = styled(Responsive)`
 	display: flex;
@@ -75,14 +73,9 @@ const PostViewer = ({ post, error, loading, actionButtons, postId }) => {
 				<Tags tags={tags} />
 			</PostHead>
 
-			{UserI.username === user.username ? actionButtons : ''}
+			{UserI && UserI.username === user.username ? actionButtons : null}
 			<PostContent dangerouslySetInnerHTML={{ __html: body }} />
 
-			<Comment postId={postId} username={user.username}/>
-
-			<Button cyan to="/postlistpage" className="listBtn">
-				목록
-			</Button>
 		</PostViewerBlock>
 	);
 };
