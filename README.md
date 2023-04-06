@@ -13,6 +13,7 @@ npm install mongoose dotenv
 npm install joi
 npm install jsonwebtoken
 
+
 # 프론트
 npm install  react-router-dom
 npm install  styled-components
@@ -25,6 +26,10 @@ npm install react-helmet-async
 npm install koa-static
 npm install node-sass
 npm install sass-loader
+npm install react-infinite-scroll-component
+
+npm install  query-string
+
 
 # react
 react
