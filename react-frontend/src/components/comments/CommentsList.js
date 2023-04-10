@@ -9,7 +9,7 @@ const CommentsListBlock = styled(Responsive)`
 	margin-bottom: 10rem;
 `;
 
-const CommentItemBlock = styled.div`
+const CommentItemBlock = styled(Responsive)`
 	min-height: 130px;
 	padding-top: 1rem;
 	padding-bottom: 2rem;
@@ -39,6 +39,14 @@ const CommentItemBlock = styled.div`
 		Button {
 			border-radius: 5rem;
 			font-weight: 400;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.recmmtForm {
+			input {
+				width: 74%;
+			}
 		}
 	}
 `;

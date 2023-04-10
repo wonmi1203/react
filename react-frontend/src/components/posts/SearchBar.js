@@ -42,9 +42,6 @@ const SearchBlock = styled(Responsive)`
 		.search_input {
 			width: 100%;
 		}
-
-		.serach_submit {
-		}
 	}
 `;
 
