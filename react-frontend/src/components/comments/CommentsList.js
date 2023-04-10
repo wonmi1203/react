@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Responsive from '../common/Responsive';
 import palette from '../../lib/styles/palette';
 import SubInfo from '../common/SubInfo';
+import Button from '../common/Button';
 
 const CommentsListBlock = styled(Responsive)`
 	margin-bottom: 10rem;
@@ -19,11 +20,26 @@ const CommentItemBlock = styled.div`
 		word-wrap: break-word;
 	}
 
-	.infoList {
+	.recmmtForm {
 		display: flex;
-		justify-content: space-between;
 		width: 100%;
-		margin-bottom: 2rem;
+		margin-top: 1rem;
+
+		input {
+			width: 60%;
+			height: 2.5rem;
+			margin-right: 0.5rem;
+			border-radius: 5rem;
+			border: 0.5px solid #d0bfff;
+			padding: 0 1rem;
+			outline: none;
+			font-size: 0.9rem;
+		}
+
+		Button {
+			border-radius: 5rem;
+			font-weight: 400;
+		}
 	}
 `;
 
@@ -31,7 +47,8 @@ const CommentActionButtonsBlock = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	min-width: 5.5rem;
-	margin-right:17px;
+	margin-top: 0.5rem;
+	margin-right: 17px;
 `;
 
 const ActionButton = styled.span`
@@ -52,38 +69,37 @@ const ActionButton = styled.span`
 `;
 
 const CommentItem = ({ user, comment, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
-  const [replying, setReplying] = useState(false);
+	const [replying, setReplying] = useState(false);
 
-  const onClickReplyButton = () => {
-    setReplying(true);
-    onChangeParentInput(comment._id);
-  };
+	const onClickReplyButton = () => {
+		setReplying(true);
+		onChangeParentInput(comment._id);
+	};
 
-  const onChange = (e) => onChangeCommentInput(e.target.value);
+	const onChange = (e) => onChangeCommentInput(e.target.value);
 
-  return (
-    <CommentItemBlock>
-      <SubInfo username={comment.authorId.username} publishedDate={comment.createdAt} />
-      {user && user._id === comment.authorId._id && (
-        <CommentActionButtonsBlock>
-          <ActionButton onClick={onClickReplyButton}>답글</ActionButton>
-          <ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
-        </CommentActionButtonsBlock>
-      )}
-      <p>{comment.body}</p>
-      {replying && (
-        <form onSubmit={onWriteComment}>
-          <textarea
-            value={body}
-            onChange={onChange}
-            placeholder={`${comment.authorId.username}님에게 답글 남기기`}
-            style={{ width: '100%', height: '5rem', marginBottom: '1rem' }}
-          />
-          <button type="submit">등록</button>
-        </form>
-      )}
-    </CommentItemBlock>
-  );
+	return (
+		<CommentItemBlock>
+			<SubInfo username={comment.authorId.username} publishedDate={comment.createdAt} />
+			{user && user._id === comment.authorId._id && (
+				<CommentActionButtonsBlock>
+					<ActionButton onClick={onClickReplyButton}>답글</ActionButton>
+					<ActionButton onClick={() => onToggleAskRemove(comment._id)}>삭제</ActionButton>
+				</CommentActionButtonsBlock>
+			)}
+			<p>{comment.body}</p>
+			{replying && (
+				<form onSubmit={onWriteComment} className='recmmtForm'>
+					<input
+						value={body}
+						onChange={onChange}
+						placeholder={`${comment.authorId.username}님에게 답글 남기기`}
+					/>
+					<Button type="submit">등록</Button>
+				</form>
+			)}
+		</CommentItemBlock>
+	);
 };
 
 const CommentsList = ({ loading, user, comments, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
