@@ -75,7 +75,6 @@ const ActionButton = styled.span`
 		margin-left: 0.25rem;
 	}
 `;
-
 const CommentItem = ({ user, comment, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
 	const [replying, setReplying] = useState(false);
 
@@ -106,24 +105,54 @@ const CommentItem = ({ user, comment, onToggleAskRemove, onChangeParentInput, on
 					<Button type="submit">등록</Button>
 				</form>
 			)}
+			{comment.parent && <p style={{ fontSize: '0.75rem', color: palette.gray[6], marginTop: '0.5rem' }}>대댓글</p>}
 		</CommentItemBlock>
 	);
 };
-
 const CommentsList = ({ loading, user, comments, onToggleAskRemove, onChangeParentInput, onChangeCommentInput, body, onWriteComment }) => {
+	const parentComments = comments && comments.filter(comment => comment.parent !== null);
+
+	const renderSubComments = (parentId) => {
+		const subComments = comments.filter(comment => comment.parent === parentId);
+		return (
+			subComments.map(comment => (
+				<CommentItem
+					user={user}
+					comment={comment}
+					onToggleAskRemove={onToggleAskRemove}
+					key={comment._id}
+					onChangeParentInput={onChangeParentInput}
+					onChangeCommentInput={onChangeCommentInput}
+					body={body}
+					onWriteComment={onWriteComment}
+				/>
+			))
+		);
+	}
+
 	return (
 		<CommentsListBlock>
 			<div>
 				{!loading && comments && (
-				<div>
-					{comments.map(comment => (
-					<CommentItem user={user} comment={comment} onToggleAskRemove={onToggleAskRemove} key={comment._id} onChangeParentInput={onChangeParentInput} onChangeCommentInput={onChangeCommentInput} body={body} onWriteComment={onWriteComment}/>
-					))}
-				</div>
+					<div>
+						{parentComments.map(comment => (
+							<div key={comment._id}>
+								<CommentItem
+									user={user}
+									comment={comment}
+									onToggleAskRemove={onToggleAskRemove}
+									onChangeParentInput={onChangeParentInput}
+									onChangeCommentInput={onChangeCommentInput}
+									body={body}
+									onWriteComment={onWriteComment}
+								/>
+								{renderSubComments(comment._id)}
+							</div>
+						))}
+					</div>
 				)}
 			</div>
 		</CommentsListBlock>
 	);
 };
-
 export default CommentsList;
