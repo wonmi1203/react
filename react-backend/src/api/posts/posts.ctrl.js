@@ -133,9 +133,10 @@ export const list = async (ctx) => {
       ]
     } : {})
   };
-
+  console.log(query);
   try {
     const posts = await Post.find(query)
+
       .populate('author', 'username')
       .sort({ _id: -1 })
       .limit(10)

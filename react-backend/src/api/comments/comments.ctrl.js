@@ -27,10 +27,9 @@ export const list = async (ctx) => {
     try {
         const comments = await Comment.find({ postId: ctx.params.postId })
             .populate('authorId', 'username')
-            .sort({ createdAt: 1 })
+            .sort({ createdAt: -1 })
             .lean()
             .exec();
-        console.log(comments);
         ctx.body = comments;
     } catch (e) {
         ctx.throw(500, e);
@@ -40,7 +39,6 @@ export const list = async (ctx) => {
 export const update = async (ctx) => {
     const { commentId } = ctx.params;
     try {
-        console.log(ctx.params);
         await Comment.findByIdAndUpdate(commentId, ctx.request.body.body, {
             new: true,
         });
