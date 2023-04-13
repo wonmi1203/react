@@ -51,6 +51,7 @@ const PostItemBlock = styled.div`
 		font-size: 1rem;
 	}
 `;
+
 let search = queryString.parse(window.location.search);
 
 if (search) {
@@ -73,7 +74,7 @@ const PostItem = ({ post }) => {
 };
 
 const PostList = ({ posts, loading, error, showWriteButton }) => {
-	const [items, setItems] = useState(posts?.slice(0, 3) || []); // 먼저 보여줄 데이터 갯수
+	const [items, setItems] = useState(posts?.slice(0, 3) || []); // 먼저 보여줄 데이터 갯수, 데이터가 존재하면 (0~3) or []
 	const [hasMore, setHasMore] = useState(posts?.length > 3); // 더 가져올 데이터 갯수
 
 	useEffect(() => {
@@ -92,11 +93,11 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 			if (posts.length - startIndex <= 3) {
 				// 남은 데이터가 3개 미만인 경우, 남은 모든 데이터를 가져옴
 				newItems = posts.slice(startIndex, posts.length);
-				setHasMore(false);
+				setHasMore(false); // 데이터 더 가져오지 않기
 			} else {
 				// 아직 더 가져올 데이터가 있는 경우
 				newItems = posts.slice(startIndex, startIndex + 3);
-				setHasMore(true);
+				setHasMore(true); // 데이터 더 가져오기
 			}
 			setItems((prevItems) => [...prevItems, ...newItems]);
 		}, 500);
@@ -121,13 +122,13 @@ const PostList = ({ posts, loading, error, showWriteButton }) => {
 
 			{!loading && Array.isArray(posts) && (
 				<InfiniteScroll
-					style={{ overflow: 'hidden' }}
-					dataLength={items.length} // 데이터 길이
-					next={fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
-					hasMore={hasMore} // 바닥에 도달시 함수 호출 여부
-					loader={<h4>Loading...</h4>} // 로더 구성요소
+					style = {{ overflow: 'hidden' }}
+					dataLength = {items.length} // 데이터 길이
+					next = {fetchMoreData} // 바닥에 도닥했을때 호출하는 함수
+					hasMore = {hasMore} // 바닥에 도달시 함수 호출 여부
+					loader = {<h4>Loading...</h4>} // 로더 구성요소
 				>
-					{items.map((item, index) => (
+					{items.map((item, index) => ( // 데이터 길이만큼 실행
 						<PostItem post={posts[index]} key={posts[index]._id} />
 					))}
 				</InfiniteScroll>
